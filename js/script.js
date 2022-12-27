@@ -15,22 +15,26 @@ function newItem(){
        }
     
      //2. Crossing out an item from the list of items:
-       function crossOut() {
-        
-       }
+      li.on('dblclick', function crossOut() {
+        li.toggleClass('strike');
+      });
              
-    
+  
      //3(i). Adding the delete button "X": 
-       let crossOutButton = document.createElement("crossOutButton");
-         crossOutButton.appendChild(document.createTextNode("X"));
+     //How does jquery know that this is a 'button'?:
+       let crossOutButton = $('<crossOutButton></crossOutButton>');
+         crossOutButton.append(document.createTextNode('X'));
          li.append(crossOutButton);
-    
-         crossOutButton.addEventListener("click", deleteListItem);
+
+         crossOutButton.on("click", deleteListItem);
+
+
      //3(ii). Adding CLASS DELETE (DISPLAY: NONE) from the css:
-       function deleteListItem(){
-             li.classList.add("delete")
+       function deleteListItem() { 
+             li.addClass('delete')
          }
      // 4. Reordering the items: 
+     //I wasn't able to explicitly find this in the documentation:
        $('#list').sortable();
     
     }
